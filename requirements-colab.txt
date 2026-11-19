@@ -1,0 +1,18 @@
+# Core dependencies for Google Colab GPU runtimes (SFW image editing + ArcFace ID evaluation)
+Pillow>=10.0.0
+PyYAML>=6.0
+numpy>=1.24.0
+requests>=2.31.0
+
+# Face alignment & ArcFace ID similarity scoring (recognition only; no face-swap tools)
+insightface>=0.7.3
+onnxruntime-gpu>=1.18.0
+opencv-python-headless>=4.9.0
+
+# Hugging Face diffusers ecosystem (install git main for latest QwenImage21Pipeline support)
+accelerate>=1.2.0
+safetensors>=0.4.5
+sentencepiece>=0.2.0
+bitsandbytes>=0.45.0
+transformers>=5.1.0
+git+https://github.com/huggingface/diffusers.git

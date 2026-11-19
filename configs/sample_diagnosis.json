@@ -1,0 +1,31 @@
+{
+  "sample_id": "demo_001",
+  "gender": "female",
+  "face_shape": "方圆脸",
+  "facial_thirds": {
+    "upper": "标准",
+    "middle": "偏长",
+    "lower": "标准"
+  },
+  "facial_fifths": "眼距适中，颧骨略外扩",
+  "skin_tone": "秋季暖皮（暖黄一白）",
+  "style_goal": "自然显嫩、修饰颧骨与缩短中庭视觉",
+  "hair_plan": {
+    "length": "锁骨层次中长发",
+    "color": "深暖茶棕色",
+    "bangs": "轻薄八字刘海自然遮挡两侧颧骨",
+    "texture": "发根自然蓬松、发尾微内扣"
+  },
+  "makeup_plan": {
+    "base": "轻透自然雾面底妆，保留真实肤质与毛孔",
+    "eyebrows": "柔和微弧自然野生眉，浅咖眉色",
+    "eyes": "自然卧蚕与柔和眼尾微下至眼线，低饱和暖棕大地色眼影",
+    "blush": "眼下苹果肌横向轻扫低饱和蜜桃色腮红以缩短中庭视觉",
+    "lips": "低饱和肉桂奶茶色哑光唇釉"
+  },
+  "lighting": "自然室内柔光",
+  "reference_images": {
+    "hair": null,
+    "makeup": null
+  }
+}
