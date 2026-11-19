@@ -1,0 +1,85 @@
+# Official SFW Foundation Model Registry for Portrait Styling Lab
+# Strictly SFW base checkpoints only — no NSFW LoRAs, no face-swap tools.
+
+models:
+  firered-1.1:
+    backend: diffusers
+    pipeline_class: DiffusionPipeline
+    model_id: FireRedTeam/FireRed-Image-Edit-1.1
+    license: Apache-2.0
+    sfw_only: true
+    defaults:
+      num_inference_steps: 40
+      true_cfg_scale: 4.0
+      guidance_scale: 1.0
+      negative_prompt: " "
+      width: 768
+      height: 1024
+    notes: "20B Apache-2.0 portrait editing model; strong Asian facial ID preservation and natural makeup rendering."
+
+  qwen-2.1:
+    backend: diffusers
+    pipeline_class: QwenImage21Pipeline
+    model_id: Qwen/Qwen-Image-2.1
+    license: qwen-research
+    sfw_only: true
+    defaults:
+      num_inference_steps: 40
+      true_cfg_scale: 1.0
+      negative_prompt: ""
+      width: 768
+      height: 1024
+    notes: "7B unified DiT + Qwen3-VL; supports multi-reference editing and strong bilingual Chinese/English prompts."
+
+  qwen-2.1-turbo:
+    backend: diffusers
+    pipeline_class: QwenImage21Pipeline
+    model_id: Qwen/Qwen-Image-2.1-Turbo
+    license: qwen-research
+    sfw_only: true
+    defaults:
+      num_inference_steps: 8
+      true_cfg_scale: 1.0
+      negative_prompt: ""
+      width: 768
+      height: 1024
+    notes: "8-step fast distilled variant of Qwen-Image-2.1 for rapid prompt iteration."
+
+  qwen-edit-2511:
+    backend: diffusers
+    pipeline_class: QwenImageEditPlusPipeline
+    model_id: Qwen/Qwen-Image-Edit-2511
+    license: Apache-2.0
+    sfw_only: true
+    defaults:
+      num_inference_steps: 40
+      true_cfg_scale: 4.0
+      guidance_scale: 1.0
+      negative_prompt: " "
+      width: 768
+      height: 1024
+    notes: "20B Apache-2.0 multi-image editor with mitigated drift and strong character consistency."
+
+  colabllm:qwen-image:
+    backend: colabllm
+    service: qwen-image
+    model_id: Qwen/Qwen-Image-2.1
+    license: Apache-2.0 / qwen-research
+    sfw_only: true
+    defaults:
+      steps: 40
+      size: "768x1024"
+      true_cfg_scale: 1.0
+      negative_prompt: ""
+    notes: "Calls remote Colab G4/A100/H100 runtime via local `colabllm qwen-image edit`."
+
+  colabllm:flux-klein:
+    backend: colabllm
+    service: flux-klein
+    model_id: black-forest-labs/flux-3-image-klein
+    license: FLUX-Kommunity
+    sfw_only: true
+    defaults:
+      steps: 16
+      size: "768x1024"
+    notes: "Calls remote Colab L4/G4/H100 runtime via local `colabllm flux-klein edit` (fast skin texture reference)."

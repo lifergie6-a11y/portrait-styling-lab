@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from importlib import resources
 from pathlib import Path
 from typing import Any
 
@@ -15,13 +16,27 @@ DEFAULT_MODELS_YAML = Path(__file__).resolve().parents[3] / "configs" / "models.
 
 
 def load_model_registry(config_path: str | Path | None = None) -> dict[str, dict[str, Any]]:
-    path = Path(config_path) if config_path else DEFAULT_MODELS_YAML
-    if not path.exists():
-        raise FileNotFoundError(f"Model registry not found at {path}")
-    raw = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    raw: dict[str, Any]
+    source_desc: str
+    if config_path is not None:
+        path = Path(config_path)
+        if not path.exists():
+            raise FileNotFoundError(f"Model registry not found at {path}")
+        raw = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        source_desc = str(path)
+    elif DEFAULT_MODELS_YAML.exists():
+        raw = yaml.safe_load(DEFAULT_MODELS_YAML.read_text(encoding="utf-8")) or {}
+        source_desc = str(DEFAULT_MODELS_YAML)
+    else:
+        bundled = resources.files("portrait_styling.data").joinpath("models.yaml")
+        raw = yaml.safe_load(bundled.read_text(encoding="utf-8")) or {}
+        source_desc = "portrait_styling.data/models.yaml"
+
     models = raw.get("models")
     if not isinstance(models, dict):
-        raise ValueError(f"Invalid models.yaml format in {path}: expected top-level 'models' mapping.")
+        raise ValueError(
+            f"Invalid models.yaml format in {source_desc}: expected top-level 'models' mapping."
+        )
     return models
 
 
